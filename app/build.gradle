@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "com.trials.imageloader"
         renderscriptTargetApi 11
