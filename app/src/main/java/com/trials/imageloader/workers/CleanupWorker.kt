@@ -1,12 +1,11 @@
-package com.trials.imageloader
+package com.trials.imageloader.workers
 
 import android.content.Context
 import android.util.Log
 import java.io.File
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.trials.imageloader.workers.makeStatusNotification
-import com.trials.imageloader.workers.sleep
+import com.trials.imageloader.OUTPUT_PATH
 
 /**
  * Cleans up temporary files generated during blurring process

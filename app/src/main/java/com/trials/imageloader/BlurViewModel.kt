@@ -4,6 +4,9 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.work.*
+import com.trials.imageloader.workers.BlurWorker
+import com.trials.imageloader.workers.CleanupWorker
+import com.trials.imageloader.workers.SaveImageToFileWorker
 
 class BlurViewModel : ViewModel() {
 
@@ -60,13 +63,23 @@ class BlurViewModel : ViewModel() {
             }
             continuation = continuation.then(blurBuilder.build())
         }
+        // Create charging constraint
+        val constraints = Constraints.Builder()
+            .setRequiresCharging(true)
+            .build()
+
         // Add WorkRequest to save the image to the filesystem
         val save = OneTimeWorkRequestBuilder<SaveImageToFileWorker>()
+            .setConstraints(constraints)
             .addTag(TAG_OUTPUT)
             .build()
         continuation = continuation.then(save)
         // Actually start the work
         continuation.enqueue()
+    }
+
+    internal fun cancelWork() {
+        workManager.cancelUniqueWork(IMAGE_MANIPULATION_WORK_NAME)
     }
 
     /**

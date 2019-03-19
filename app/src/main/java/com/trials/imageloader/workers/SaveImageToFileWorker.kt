@@ -1,4 +1,4 @@
-package com.trials.imageloader
+package com.trials.imageloader.workers
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -11,8 +11,7 @@ import java.util.Locale
 import androidx.work.Data
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.trials.imageloader.workers.makeStatusNotification
-import com.trials.imageloader.workers.sleep
+import com.trials.imageloader.KEY_IMAGE_URI
 
 /**
  * Saves the image to a permanent file
